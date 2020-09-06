@@ -1,5 +1,1 @@
 *.swp
-
-tests/*
-!tests/**/
-!tests/*.*
