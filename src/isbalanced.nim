@@ -51,12 +51,18 @@ proc isBalanced*(s: string; open, close: Regex): bool =
     var
       openPos = int.high
       closePos = int.high
+      needFindCloseMatch = true
 
-    let
-      openMatch = s.find(open, start = pos)
-      closeMatch = s.find(close, start = pos)
+    let openMatch = s.find(open, start = pos)
+    var closeMatch = none(RegexMatch)
+
     if openMatch.isSome:
       openPos = openMatch.get.matchStart
+      if openPos == pos:
+        needFindCloseMatch = false
+
+    if needFindCloseMatch:
+      closeMatch = s.find(close, start = pos)
     if closeMatch.isSome:
       closePos = closeMatch.get.matchStart
 
