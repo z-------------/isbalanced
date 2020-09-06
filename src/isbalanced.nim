@@ -41,8 +41,6 @@ proc matchStart(m: RegexMatch): int =
   m.captureBounds[-1].a
 
 proc isBalanced*(s: string; open, close: Regex): bool =
-  ## Not optimal (a lot of wasted/duplicated computation),
-  ## but it works.
   var
     level = 0
     pos = 0
